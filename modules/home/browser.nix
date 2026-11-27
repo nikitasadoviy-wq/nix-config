@@ -1,9 +1,9 @@
-{ inputs, pkgs, ... }:
-{
-  imports = [ inputs.zen-browser.homeModules.beta ];
 
-  programs.zen-browser = {
+{ pkgs, ... }:
+
+{
+  programs.firefox = {
     enable = true;
-    setAsDefaultBrowser = true;
+    package = pkgs.firefox;
   };
 }
