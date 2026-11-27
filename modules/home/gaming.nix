@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     ## Minecraft
-    prismlauncher
+    ## xmcl but in flake.nix
 
     ## Cli games
     _2048
