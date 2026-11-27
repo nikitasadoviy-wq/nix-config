@@ -20,6 +20,7 @@
 
     ## Emulation
     cemu
+    ryubing
     mgba
     snes9x
     sameboy
