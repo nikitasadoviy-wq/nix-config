@@ -1,3 +1,4 @@
+
 { ... }:
 {
   wayland.windowManager.hyprland.settings = {
@@ -24,7 +25,8 @@
       "match:title ^(Picture-in-Picture)$, pin on"
       "match:title ^(Picture-in-Picture)$, float on"
 
-      "match:class ^(zen-beta)$, workspace 1"
+      # Workspace assignments
+      "match:class ^(firefox)$, workspace 1"
       "match:class ^(codium)$, workspace 3"
       "match:class ^(Gimp-2.10)$, workspace 4"
       "match:class ^(Aseprite)$, workspace 4"
@@ -35,9 +37,9 @@
       "match:class ^(WebCord)$, workspace 10"
       "match:class ^(vesktop)$, workspace 10"
 
+      # Idle inhibition
       "match:class ^(mpv)$, idle_inhibit focus"
-      "match:class ^(zen-beta)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
-      "match:class ^(zen)$, idle_inhibit fullscreen"
+      "match:class ^(firefox)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
 
       "match:class ^(xdg-desktop-portal-gtk)$, dim_around on"
 
@@ -55,7 +57,6 @@
       "match:namespace swaync-control-center, dim_around on"
     ];
 
-    # No gaps when only
     workspace = [
       "w[tv1], gapsout:0, gapsin:0"
       "f[1], gapsout:0, gapsin:0"
