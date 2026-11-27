@@ -4,11 +4,6 @@
       Nikituch's Flakes 
    <br>
       <img src="./.github/assets/pallet/pallet-0.png" width="600px" /> <br>
-
-   <div align="center">
-      <p></p>
-      <div align="center">
-         <a href="https://github.com/Frost-Phoenix/nixos-config/stargazers">
             <img src="https://img.shields.io/github/stars/Frost-Phoenix/nixos-config?color=FABD2F&labelColor=282828&style=for-the-badge&logo=starship&logoColor=FABD2F">
          </a>
          <a href="https://github.com/Frost-Phoenix/nixos-config/">
