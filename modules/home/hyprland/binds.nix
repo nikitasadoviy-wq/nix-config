@@ -1,4 +1,5 @@
-{ ... }:
+
+{ lib, host, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     binds = {
@@ -7,18 +8,18 @@
     };
 
     bind = [
-      # show keybinds list
+      # Show keybinds list
       "$mod, F1, exec, show-keybinds"
 
-      # keybindings
+      # Applications
       "$mod, Return, exec, ghostty --gtk-single-instance=true"
       "ALT, Return, exec, [float; size 1111 700] ghostty"
       "$mod SHIFT, Return, exec, [fullscreen] ghostty"
-      "$mod, B, exec, [workspace 1 silent] zen-beta"
+      "$mod, B, exec, firefox"
       "$mod, Q, killactive,"
       "$mod, F, fullscreen, 0"
       "$mod SHIFT, F, fullscreen, 1"
-      "$mod, Space, exec, toggle-float"
+      "$mod SHIFT, Space, exec, toggle-float"
       "$mod, D, exec, toggle-rofi rofi -show drun"
       "$mod SHIFT, D, exec, vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
       "$mod, Escape, exec, hyprlock"
@@ -29,17 +30,16 @@
       "$mod, E, exec, nemo"
       "ALT, E, exec, hyprctl dispatch exec '[float; size 1111 700] nemo'"
       "$mod SHIFT, B, exec, toggle-waybar"
-      "$mod, C ,exec, hyprpicker -a"
-      "$mod, W,exec, wallpaper-picker"
-      "$mod SHIFT, W,exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
+      "$mod, C, exec, hyprpicker -a"
+      "$mod, W, exec, wallpaper-picker"
+      "$mod SHIFT, W, exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
       "$mod, N, exec, swaync-client -t -sw"
       "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
       "$mod, equal, exec, woomer"
-      # "$mod SHIFT, W, exec, vm-start"
 
       "$mod, XF86Display, exec, toggle-display"
 
-      # screenshot
+      # Screenshots
       ", Print, exec, screenshot --copy"
       "$mod, Print, exec, screenshot --save"
       "$mod SHIFT, Print, exec, screenshot --swappy"
@@ -47,29 +47,21 @@
       # OCR
       "$mod CTRL, O, exec, ocr"
 
-      # switch focus
-      "$mod, left,  movefocus, l"
+      # Focus navigation
+      "$mod, left, movefocus, l"
       "$mod, right, movefocus, r"
-      "$mod, up,    movefocus, u"
-      "$mod, down,  movefocus, d"
+      "$mod, up, movefocus, u"
+      "$mod, down, movefocus, d"
       "$mod, h, movefocus, l"
       "$mod, j, movefocus, d"
       "$mod, k, movefocus, u"
       "$mod, l, movefocus, r"
 
-      "$mod, left,  alterzorder, top"
-      "$mod, right, alterzorder, top"
-      "$mod, up,    alterzorder, top"
-      "$mod, down,  alterzorder, top"
-      "$mod, h, alterzorder, top"
-      "$mod, j, alterzorder, top"
-      "$mod, k, alterzorder, top"
-      "$mod, l, alterzorder, top"
-
+      # Focus floating / tiled windows
       "CTRL ALT, up, exec, hyprctl dispatch focuswindow floating"
       "CTRL ALT, down, exec, hyprctl dispatch focuswindow tiled"
 
-      # switch workspace
+      # Switch workspace
       "$mod, 1, workspace, 1"
       "$mod, 2, workspace, 2"
       "$mod, 3, workspace, 3"
@@ -81,8 +73,8 @@
       "$mod, 9, workspace, 9"
       "$mod, 0, workspace, 10"
 
-      # same as above, but switch to the workspace
-      "$mod SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent
+      # Move windows to workspaces
+      "$mod SHIFT, 1, movetoworkspacesilent, 1"
       "$mod SHIFT, 2, movetoworkspacesilent, 2"
       "$mod SHIFT, 3, movetoworkspacesilent, 3"
       "$mod SHIFT, 4, movetoworkspacesilent, 4"
@@ -92,9 +84,9 @@
       "$mod SHIFT, 8, movetoworkspacesilent, 8"
       "$mod SHIFT, 9, movetoworkspacesilent, 9"
       "$mod SHIFT, 0, movetoworkspacesilent, 10"
-      "$mod CTRL, c, movetoworkspace, empty"
+      "$mod CTRL, C, movetoworkspace, empty"
 
-      # window control
+      # Move windows
       "$mod SHIFT, left, movewindow, l"
       "$mod SHIFT, right, movewindow, r"
       "$mod SHIFT, up, movewindow, u"
@@ -104,6 +96,7 @@
       "$mod SHIFT, k, movewindow, u"
       "$mod SHIFT, l, movewindow, r"
 
+      # Resize windows
       "$mod CTRL, left, resizeactive, -80 0"
       "$mod CTRL, right, resizeactive, 80 0"
       "$mod CTRL, up, resizeactive, 0 -80"
@@ -113,34 +106,39 @@
       "$mod CTRL, k, resizeactive, 0 -80"
       "$mod CTRL, l, resizeactive, 80 0"
 
-      "$mod ALT, left, moveactive,  -80 0"
+      # Move floating windows
+      "$mod ALT, left, moveactive, -80 0"
       "$mod ALT, right, moveactive, 80 0"
       "$mod ALT, up, moveactive, 0 -80"
       "$mod ALT, down, moveactive, 0 80"
-      "$mod ALT, h, moveactive,  -80 0"
+      "$mod ALT, h, moveactive, -80 0"
       "$mod ALT, j, moveactive, 0 80"
       "$mod ALT, k, moveactive, 0 -80"
       "$mod ALT, l, moveactive, 80 0"
 
-      # media and volume controls
-      ", XF86AudioPlay,exec, playerctl play-pause"
-      ", XF86AudioNext,exec, playerctl next"
-      ", XF86AudioPrev,exec, playerctl previous"
-      ", XF86AudioStop,exec, playerctl stop"
+      # Media controls
+      ", XF86AudioPlay, exec, playerctl play-pause"
+      ", XF86AudioNext, exec, playerctl next"
+      ", XF86AudioPrev, exec, playerctl previous"
+      ", XF86AudioStop, exec, playerctl stop"
 
+      # Mouse workspace navigation
       "$mod, mouse_down, workspace, e-1"
       "$mod, mouse_up, workspace, e+1"
 
-      # clipboard manager
+      # Clipboard manager
       "$mod, V, exec, toggle-rofi \"cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy\""
     ];
 
-    # mouse binding
+    # Mouse bindings
     bindm = [
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
     ];
 
-    bindl = [ ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock" ];
+    # Laptop lid switch
+    bindl = lib.optionals (host == "laptop") [
+      ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
+    ];
   };
 }
