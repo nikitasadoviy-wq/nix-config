@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   programs = {
     dconf.enable = true;
@@ -6,13 +7,14 @@
 
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
-      # pinentryFlavor = "";
+      enableSSHSupport = false;
     };
 
     appimage.enable = true;
 
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [ ];
+    nix-ld = {
+      enable = true;
+      libraries = [ ];
+    };
   };
 }
