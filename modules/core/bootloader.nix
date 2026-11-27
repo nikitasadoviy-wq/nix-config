@@ -2,9 +2,12 @@
 {
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      limine = {
+        enable = true;
+        maxGenerations = 10;
+      };
+
       efi.canTouchEfiVariables = true;
-      systemd-boot.configurationLimit = 10;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
