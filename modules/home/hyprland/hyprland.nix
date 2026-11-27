@@ -14,21 +14,18 @@
     direnv
     tesseract
   ];
+
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
-
     configType = "hyprlang";
 
-    xwayland = {
-      enable = true;
-      # hidpi = true;
-    };
-    # enableNvidiaPatches = false;
+    xwayland.enable = true;
     systemd.enable = true;
   };
 }
