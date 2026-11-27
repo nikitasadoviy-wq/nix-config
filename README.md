@@ -85,7 +85,6 @@ You can find my previous Catppuccin rice [here](https://github.com/Frost-Phoenix
 >
 > **Please be aware:**
 > - This configuration is constantly evolving - expect breaking changes
-> - The README and documentation are most likely outdated
 > - Features may be partially implemented or broken
 > - I provide **no guarantees** of stability
 >
