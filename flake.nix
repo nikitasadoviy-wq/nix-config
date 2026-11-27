@@ -1,8 +1,14 @@
+
 {
-  description = "FrostPhoenix's nixos configuration";
+  description = "Nikituch's modular NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -26,50 +32,54 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     superfile.url = "github:yorukot/superfile";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
   };
 
   outputs =
     { nixpkgs, self, ... }@inputs:
     let
-      username = "frostphoenix";
+      username = "nikituch";
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/desktop ];
+
+          modules = [
+            inputs.disko.nixosModules.disko
+            ./hosts/desktop
+          ];
+
           specialArgs = {
             host = "desktop";
             inherit self inputs username;
           };
         };
+
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/laptop ];
+
+          modules = [
+            inputs.disko.nixosModules.disko
+            ./hosts/laptop
+          ];
+
           specialArgs = {
             host = "laptop";
             inherit self inputs username;
           };
         };
-        p14s = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/p14s ];
-          specialArgs = {
-            host = "p14s";
-            inherit self inputs username;
-          };
-        };
+
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/vm ];
+
+          modules = [
+            inputs.disko.nixosModules.disko
+            ./hosts/vm
+          ];
+
           specialArgs = {
             host = "vm";
             inherit self inputs username;
