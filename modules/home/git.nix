@@ -1,3 +1,4 @@
+
 { pkgs, username, ... }:
 {
   programs.git = {
@@ -5,8 +6,8 @@
 
     settings = {
       user = {
-        name = "Frost-Phoenix";
-        email = "67cyril6767@gmail.com";
+        name = "nikitasadoviy-wq";
+        email = "nikitasadoviy@gmail.com";
       };
 
       init.defaultBranch = "main";
@@ -20,7 +21,8 @@
           "gh:"
           "https://github.com/"
         ];
-        "git@github.com:frost-phoenix/".insteadOf = "fp:";
+
+        "git@github.com:nikitasadoviy-wq/".insteadOf = "fp:";
       };
 
       core.excludesFile = "/home/${username}/.config/git/.gitignore";
@@ -29,7 +31,7 @@
 
   programs.delta = {
     enable = true;
-    enableGitIntegration = false;
+    enableGitIntegration = true;
 
     options = {
       line-numbers = true;
@@ -70,7 +72,7 @@
     gps = "git push";
     gpso = "git push origin";
     gpst = "git push --tags";
-    gtag = "git tag -ma";
+    gtag = "git tag -a -m";
 
     gm = "git merge";
     gb = "git branch";
