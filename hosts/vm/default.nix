@@ -1,26 +1,40 @@
-{ lib, ... }:
+
+{ ... }:
+
 {
   imports = [
     ./hardware-configuration.nix
     ./../../modules/core
   ];
 
-  # kvm/qemu doesn't use UEFI firmware mode by default.
-  # so we force-override the setting here
-  # and configure GRUB instead.
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = false;
+  # Virtual machine profile
+  networking.hostName = "nixos-vm";
 
-  # allow local remote access to make it easier to toy around with the system
+  # UEFI boot
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Bootloader selection
+  # Temporary default until the modular bootloader system is ready.
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
+
+  # SSH: public-key authentication only
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+
     settings = {
-      PasswordAuthentication = true;
-      AllowUsers = null;
-      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PubkeyAuthentication = true;
+      PermitRootLogin = "no";
     };
   };
+
+  # Networking
+  networking.networkmanager.enable = true;
+
+  # Virtual machine does not need physical Bluetooth devices.
+  hardware.bluetooth.enable = false;
 }
