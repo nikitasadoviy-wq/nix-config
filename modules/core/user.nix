@@ -1,3 +1,4 @@
+
 {
   pkgs,
   inputs,
@@ -5,30 +6,52 @@
   host,
   ...
 }:
+
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
+  # Home Manager
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs username host; };
+
+    extraSpecialArgs = {
+      inherit inputs username host;
+    };
+
     users.${username} = {
-      imports = [ ./../home ];
-      home.username = "${username}";
-      home.homeDirectory = "/home/${username}";
-      home.stateVersion = "26.05";
+      imports = [
+        ./../home
+      ];
+
+      home = {
+        inherit username;
+        homeDirectory = "/home/${username}";
+        stateVersion = "26.05";
+      };
+
       programs.home-manager.enable = true;
     };
+
     backupFileExtension = "hm-backup";
   };
 
+  # Main user
   users.users.${username} = {
     isNormalUser = true;
-    description = "${username}";
+    description = username;
+
     extraGroups = [
       "networkmanager"
       "wheel"
     ];
+
     shell = pkgs.zsh;
   };
-  nix.settings.allowed-users = [ "${username}" ];
+
+  nix.settings.allowed-users = [
+    username
+  ];
 }
