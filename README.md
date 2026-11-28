@@ -1,7 +1,7 @@
 <h1 align="center">
    <img src="./.github/assets/logo/nixos-logo.png" width="100px" /> 
    <br>
-      Plombir 
+      Nikituch
    <br>
       <img src="./.github/assets/pallet/pallet-0.png" width="600px" /> 
             <img src="https://img.shields.io/github/repo-size/nikitasadoviy-wq/nix-config?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
