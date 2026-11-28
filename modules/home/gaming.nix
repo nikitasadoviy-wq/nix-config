@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [
     ## Minecraft
-    prismlauncher
+    inputs.xmcl.packages.${pkgs.system}.default
 
     ## Cli games
     _2048
