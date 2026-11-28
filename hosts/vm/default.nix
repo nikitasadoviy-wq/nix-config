@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -30,5 +30,5 @@
   networking.networkmanager.enable = true;
 
   # Virtual machine does not need physical Bluetooth devices.
-  hardware.bluetooth.enable = false;
+  hardware.bluetooth.enable = lib.mkForce false;
 }
