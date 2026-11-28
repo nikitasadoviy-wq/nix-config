@@ -86,19 +86,18 @@ in
       format = "<span foreground='${green}'> </span> {usage}%";
       format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
       interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] ghostty --font-size=14 -e btop'";
     };
     memory = {
       format = "<span foreground='${cyan}'>󰟜 </span>{}%";
-      format-alt = "<span foreground='${cyan}'>󰟜 </span>{used} GiB"; # 
+      format-alt = "<span foreground='${cyan}'>󰟜 </span>{used} GiB";
       interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] ghostty --font-size=14 -e btop'";
     };
     disk = {
-      # path = "/";
       format = "<span foreground='${orange}'>󰋊 </span>{percentage_used}%";
       interval = 60;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] ghostty --font-size=14 -e btop'";
     };
     network = {
       format-wifi = "<span foreground='${magenta}'> </span> {signalStrength}%";
@@ -145,9 +144,10 @@ in
       tooltip = true;
       tooltip-format = "Keyboard layout";
       format = "<span foreground='#FABD2F'> </span> {}";
-      format-fr = "FR";
-      format-en = "US";
-      on-click = "hyprctl switchxkblayout at-translated-set-2-keyboard next";
+      format-us = "US";
+      format-ua = "UA";
+      format-ru = "RU";
+      on-click = "hyprctl switchxkblayout all next";
     };
     "custom/launcher" = {
       format = "";
