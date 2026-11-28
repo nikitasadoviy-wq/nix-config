@@ -4,54 +4,31 @@
   username,
   host,
   disableAseprite,
+  fastInstall,
   ...
 }:
 
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  # Home Manager
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-
-    extraSpecialArgs = {
-      inherit inputs username host disableAseprite;
-    };
-
+    extraSpecialArgs = { inherit inputs username host disableAseprite fastInstall; };
     users.${username} = {
-      imports = [
-        ./../home
-      ];
-
-      home = {
-        inherit username;
-        homeDirectory = "/home/${username}";
-        stateVersion = "26.05";
-      };
-
+      imports = [ ./../home ];
+      home = { inherit username; homeDirectory = "/home/${username}"; stateVersion = "26.05"; };
       programs.home-manager.enable = true;
     };
-
     backupFileExtension = "hm-backup";
   };
 
-  # Main user
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 
-  nix.settings.allowed-users = [
-    username
-  ];
+  nix.settings.allowed-users = [ username ];
 }

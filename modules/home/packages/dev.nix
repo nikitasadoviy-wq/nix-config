@@ -1,25 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, fastInstall ? false, ... }:
 {
-  home.packages = with pkgs; [
-    ## Lsp
-    nixd # nix
-
-    ## formating
-    shfmt
-    treefmt
-    nixfmt
-
-    ## C / C++
-    gcc
-    gdb
-    gef
-    cmake
-    gnumake
-    valgrind
-    llvmPackages_20.clang-tools
-
-    ## Python
-    python3
-    python312Packages.ipython
-  ];
+  home.packages = with pkgs;
+    if fastInstall then [
+      nixd shfmt nixfmt
+    ] else [
+      nixd shfmt treefmt nixfmt
+      gcc gdb gef cmake gnumake valgrind llvmPackages_20.clang-tools
+      python3 python312Packages.ipython
+    ];
 }

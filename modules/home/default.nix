@@ -1,43 +1,44 @@
-{ ... }:
+{ fastInstall ? false, ... }:
 {
   imports = [
-    ./aseprite/aseprite.nix           # pixel art editor
-    ./audacious/audacious.nix         # music player
-    ./bat.nix                         # better cat command
-    ./browser.nix                     # firefox based browser
-    ./btop.nix                        # resouces monitor
-    ./cava.nix                        # audio visualizer
+    ./aseprite/aseprite.nix
+    ./bat.nix
+    ./browser.nix
+    ./btop.nix
+    ./cava.nix
     ./direnv.nix
-    ./discord.nix                     # discord
-    ./fastfetch/fastfetch.nix         # fetch tool
-    ./fzf.nix                         # fuzzy finder
-    ./gaming.nix                      # packages related to gaming
-    ./ghostty/ghostty.nix             # terminal
-    ./git.nix                         # version control
-    ./gnome.nix                       # gnome apps
-    ./gtk.nix                         # gtk theme
-    ./hyprland                        # window manager
+    ./fastfetch/fastfetch.nix
+    ./fzf.nix
+    ./ghostty/ghostty.nix
+    ./git.nix
+    ./gtk.nix
+    ./hyprland
     ./lazygit.nix
     ./micro.nix
-    ./nemo.nix                        # file manager
-    ./nvim.nix                        # neovim editor
-    ./obsidian.nix
+    ./nvim.nix
     ./p10k/p10k.nix
-    ./packages                        # other packages
-    ./pomo/pomo.nix                   # TUI Pomodoro timer
-    ./retroarch.nix
-    ./rofi/rofi.nix                   # launcher
-    ./../../scripts/scripts.nix       # personal scripts
-    ./ssh.nix                         # ssh config
-    ./spicetify.nix                   # spotify client
-    ./superfile/superfile.nix         # terminal file manager
-    ./swaylock.nix                    # lock screen
-    ./swayosd.nix                     # brightness / volume widget
-    ./swaync/swaync.nix               # notification daemon
-    ./vscodium
+    ./pomo/pomo.nix
+    ./rofi/rofi.nix
+    ./../../scripts/scripts.nix
+    ./ssh.nix
+    ./superfile/superfile.nix
+    ./swaylock.nix
+    ./swayosd.nix
+    ./swaync/swaync.nix
     ./waybar
-    ./waypaper.nix                    # GUI wallpaper picker
-    ./xdg-mimes.nix                   # xdg config
+    ./waypaper.nix
+    ./xdg-mimes.nix
     ./zsh
-  ];
+  ] ++ (if fastInstall then [ ] else [
+    ./audacious/audacious.nix
+    ./discord.nix
+    ./gaming.nix
+    ./gnome.nix
+    ./nemo.nix
+    ./obsidian.nix
+    ./packages
+    ./retroarch.nix
+    ./spicetify.nix
+    ./vscodium
+  ]);
 }
