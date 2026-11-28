@@ -44,51 +44,47 @@
   outputs =
     { nixpkgs, self, ... }@inputs:
     let
-      username = "nikituch";
       system = "x86_64-linux";
+
+      username =
+        let
+          value = builtins.getEnv "NIXOS_USERNAME";
+        in
+        if value != "" then value else "nikituch";
+
+      disableAseprite = builtins.getEnv "DISABLE_ASEPRITE" == "1";
+
+      specialArgs = host: {
+        inherit self inputs username disableAseprite host;
+      };
     in
     {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-
+          specialArgs = specialArgs "desktop";
           modules = [
             inputs.disko.nixosModules.disko
             ./hosts/desktop
           ];
-
-          specialArgs = {
-            host = "desktop";
-            inherit self inputs username;
-          };
         };
 
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-
+          specialArgs = specialArgs "laptop";
           modules = [
             inputs.disko.nixosModules.disko
             ./hosts/laptop
           ];
-
-          specialArgs = {
-            host = "laptop";
-            inherit self inputs username;
-          };
         };
 
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
-
+          specialArgs = specialArgs "vm";
           modules = [
             inputs.disko.nixosModules.disko
             ./hosts/vm
           ];
-
-          specialArgs = {
-            host = "vm";
-            inherit self inputs username;
-          };
         };
       };
     };
