@@ -34,12 +34,13 @@ while true; do
 done
 
 HOST="$(whiptail --title "Plombir — host" --radiolist \
-  "Choose the target hardware profile:" 12 64 3 \
-  "laptop" "Laptop (Ryzen / hybrid graphics profile)" ON \
+  "Choose the target hardware profile:" 14 64 4 \
+  "laptop" "Laptop profile" ON \
   "desktop" "Desktop PC" OFF \
+  "p14s" "ThinkPad P14s" OFF \
   "vm" "Virtual machine" OFF 3>&1 1>&2 2>&3)" || exit 0
 
-if [[ "$HOST" != "laptop" && "$HOST" != "desktop" && "$HOST" != "vm" ]]; then
+if [[ "$HOST" != "laptop" && "$HOST" != "desktop" && "$HOST" != "p14s" && "$HOST" != "vm" ]]; then
   echo "Invalid host selection: $HOST" >&2
   exit 1
 fi
