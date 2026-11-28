@@ -27,6 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile.url = "github:yorukot/superfile";
+    xmcl = {
+      url = "github:x45iq/xmcl-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
