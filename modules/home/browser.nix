@@ -9,8 +9,8 @@
     profiles.default = {
       id = 0;
       name = "default";
-      isDefault = true;
       path = "default";
+      isDefault = true;
 
       settings = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
