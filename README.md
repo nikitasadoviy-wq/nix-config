@@ -223,7 +223,7 @@ git clone https://github.com/nikitasadoviy-wq/nix-config
 cd nix-config
 ```
 
-The configuration can be cloned into any directory; run the installer from the repository root.
+The recommended location is `$HOME/nix-config` (the `cdnix` shell alias uses this path). Run the installer from the repository root.
 
 #### 3. **Run the Install Script**
 
@@ -257,15 +257,6 @@ Some manual configuration is still required:
 
 - **Browser**: Configure your browser extensions, settings, etc. (for now, all browser configuration is done manually)
 - **Aseprite Themes**: Import themes from aseprite [themes folder](./modules/home/aseprite/themes/)
-- **Git Identity**: Update the [git.nix](./modules/home/git.nix) file with your name and email
-```nix
-programs.git = {
-   ...
-   userName = "<your_name>";
-   userEmail = "<your_email>";
-   ...
-};
-```
 
 # 👥 Credits
 
@@ -294,7 +285,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 
 <!-- # ✨ Stars History
 
-<p align="center"><img src="https://api.star-history.com/svg?repos=frost-phoenix/nixos-config&type=Timeline&theme=dark" /></p> -->
+<p align="center"><img src="https://api.star-history.com/svg?repos=nikitasadoviy-wq/nix-config&type=Timeline&theme=dark" /></p> -->
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 
