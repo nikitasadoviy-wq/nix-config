@@ -1,5 +1,5 @@
 {
-  description = "FrostPhoenix's nixos configuration";
+  description = "Plombir NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -27,13 +27,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile.url = "github:yorukot/superfile";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
   };
 
   outputs =
     { nixpkgs, self, ... }@inputs:
     let
-      username = "frostphoenix";
+      username = "nikituch";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
