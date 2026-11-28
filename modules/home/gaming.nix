@@ -2,7 +2,7 @@
 {
   home.packages =
     [
-      inputs.xmcl.packages.\${pkgs.system}.default
+      inputs.xmcl.packages.${pkgs.system}.default
     ]
     ++ (with pkgs;
       if fastInstall then [
