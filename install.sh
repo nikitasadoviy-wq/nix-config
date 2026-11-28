@@ -50,9 +50,16 @@ if whiptail --title "Aseprite" --yesno \
   DISABLE_ASEPRITE="1"
 fi
 
+FAST_INSTALL="0"
+if whiptail --title "Fast install" --yesno \
+  "Use the minimal profile? It skips optional applications and large package groups to reduce downloads and build time. You can install them later." 11 68 --defaultno; then
+  FAST_INSTALL="1"
+fi
+
 summary="Username: $username
 Host profile: $HOST
 Aseprite: $([[ "$DISABLE_ASEPRITE" == "1" ]] && echo Disabled || echo Enabled)
+Fast profile: $([[ "$FAST_INSTALL" == "1" ]] && echo Enabled || echo Disabled)
 
 The installer will copy the hardware configuration and run nixos-rebuild switch."
 
@@ -80,6 +87,7 @@ echo "Building Plombir for host '$HOST'..."
 sudo env \
   NIXOS_USERNAME="$username" \
   DISABLE_ASEPRITE="$DISABLE_ASEPRITE" \
+  PLOMBIR_FAST_INSTALL="$FAST_INSTALL" \
   nixos-rebuild switch --impure --flake ".#$HOST"
 
 echo "Plombir was built and activated successfully. Reboot when convenient."
