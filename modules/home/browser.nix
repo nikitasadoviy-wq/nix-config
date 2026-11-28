@@ -1,9 +1,15 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = [ inputs.zen-browser.homeModules.beta ];
-
-  programs.zen-browser = {
+  programs.firefox = {
     enable = true;
-    setAsDefaultBrowser = true;
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+    };
   };
 }
