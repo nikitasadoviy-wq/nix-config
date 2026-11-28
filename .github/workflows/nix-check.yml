@@ -24,7 +24,9 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Resolve and lock flake inputs
-        run: nix flake lock
+        run: |
+          nix flake lock --recreate-lock-file
+          cat flake.lock
 
       - name: Parse every Nix expression
         run: |
