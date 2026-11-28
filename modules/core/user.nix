@@ -1,9 +1,9 @@
-
 {
   pkgs,
   inputs,
   username,
   host,
+  disableAseprite,
   ...
 }:
 
@@ -18,7 +18,7 @@
     useGlobalPkgs = true;
 
     extraSpecialArgs = {
-      inherit inputs username host;
+      inherit inputs username host disableAseprite;
     };
 
     users.${username} = {

@@ -1,15 +1,10 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 {
-  nixpkgs = {
-    overlays = [
-      (
-        final: prev:
-        (import ../../pkgs {
-          inherit inputs;
-          inherit pkgs;
-          inherit (prev) system;
-        })
-      )
-    ];
-  };
+  nixpkgs.overlays = [
+    (final: _prev: import ../../pkgs {
+      inherit inputs;
+      pkgs = final;
+      system = final.stdenv.hostPlatform.system;
+    })
+  ];
 }

@@ -1,15 +1,15 @@
 <h1 align="center">
    <img src="./.github/assets/logo/nixos-logo.png" width="100px" /> 
    <br>
-      Nikituch's Flakes 
+      Plombir 
    <br>
       <img src="./.github/assets/pallet/pallet-0.png" width="600px" /> 
-            <img src="https://img.shields.io/github/repo-size/Frost-Phoenix/nixos-config?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
+            <img src="https://img.shields.io/github/repo-size/nikitasadoviy-wq/nix-config?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
          </a>
          <a = href="https://nixos.org">
             <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=282828&logo=NixOS&logoColor=458588&color=458588">
          </a>
-         <a href="https://github.com/Frost-Phoenix/nixos-config/blob/main/LICENSE">
+         <a href="https://github.com/nikitasadoviy-wq/nix-config/blob/main/LICENSE">
             <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=282828&colorB=98971A&logo=unlicense&logoColor=98971A&"/>
          </a>
       </div>
@@ -76,7 +76,7 @@
    <img src="./.github/assets/screenshots/notification_center.png" style="margin-bottom: 15px;" /> <br>
 </details>
 
-You can find my previous Catppuccin rice [here](https://github.com/Frost-Phoenix/nixos-config/tree/catppuccin) (outdated).
+You can find my previous Catppuccin rice [here](https://github.com/nikitasadoviy-wq/nix-config/tree/catppuccin) (outdated).
 
 # 🗃️ Overview
 
@@ -219,11 +219,11 @@ First, install NixOS using any [graphical ISO](https://nixos.org/download.html#n
 
 ```bash
 nix-shell -p git
-git clone https://github.com/Frost-Phoenix/nixos-config
-cd nixos-config
+git clone https://github.com/nikitasadoviy-wq/nix-config
+cd nix-config
 ```
 
-The configuration expects the repo to be located at `$HOME/nixos-config`.
+The recommended location is `$HOME/nix-config` (the `cdnix` shell alias uses this path). Run the installer from the repository root.
 
 #### 3. **Run the Install Script**
 
@@ -234,18 +234,9 @@ The configuration expects the repo to be located at `$HOME/nixos-config`.
 ./install.sh
 ```
 
-The script will guide you through host selection and apply the configuration.
+The script asks for your Linux username and target profile (laptop, desktop, or VM). Aseprite is enabled by default and can be disabled in the installer. It copies the hardware configuration, then runs `nixos-rebuild switch` with the required impure environment variables. Run this repository's installer after completing a standard NixOS installation.
 
 The installation phase can take quite some time depending on your machine.
-
-> [!NOTE]
-> If the build gets stuck , due to RAM constraints (see [PR #30](https://github.com/Frost-Phoenix/nixos-config/pull/30)), you may need to edit the script to limit CPU cores:
->
-> ```diff
-> # Change in install.sh:
-> - sudo nixos-rebuild switch --flake .#${HOST}
-> + sudo nixos-rebuild switch --cores 4 --flake .#${HOST}
-> ```
 
 #### 4. **Reboot**
 
@@ -257,15 +248,6 @@ Some manual configuration is still required:
 
 - **Browser**: Configure your browser extensions, settings, etc. (for now, all browser configuration is done manually)
 - **Aseprite Themes**: Import themes from aseprite [themes folder](./modules/home/aseprite/themes/)
-- **Git Identity**: Update the [git.nix](./modules/home/git.nix) file with your name and email
-```nix
-programs.git = {
-   ...
-   userName = "<your_name>";
-   userEmail = "<your_email>";
-   ...
-};
-```
 
 # 👥 Credits
 
@@ -294,7 +276,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 
 <!-- # ✨ Stars History
 
-<p align="center"><img src="https://api.star-history.com/svg?repos=frost-phoenix/nixos-config&type=Timeline&theme=dark" /></p> -->
+<p align="center"><img src="https://api.star-history.com/svg?repos=nikitasadoviy-wq/nix-config&type=Timeline&theme=dark" /></p> -->
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 

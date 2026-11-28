@@ -1,6 +1,5 @@
-
 {
-  description = "Nikituch's modular NixOS configuration";
+  description = "Plombir — modular NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
