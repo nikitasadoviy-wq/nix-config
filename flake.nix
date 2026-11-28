@@ -25,6 +25,7 @@
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem { inherit system; specialArgs = specialArgs "desktop"; modules = [ inputs.disko.nixosModules.disko ./hosts/desktop ]; };
         laptop = nixpkgs.lib.nixosSystem { inherit system; specialArgs = specialArgs "laptop"; modules = [ inputs.disko.nixosModules.disko ./hosts/laptop ]; };
+        p14s = nixpkgs.lib.nixosSystem { inherit system; specialArgs = specialArgs "p14s"; modules = [ inputs.disko.nixosModules.disko ./hosts/p14s ]; };
         vm = nixpkgs.lib.nixosSystem { inherit system; specialArgs = specialArgs "vm"; modules = [ inputs.disko.nixosModules.disko ./hosts/vm ]; };
       };
     };
