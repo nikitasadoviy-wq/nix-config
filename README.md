@@ -238,15 +238,6 @@ The script asks for your Linux username and target profile (laptop, desktop, or 
 
 The installation phase can take quite some time depending on your machine.
 
-> [!NOTE]
-> If the build gets stuck , due to RAM constraints (see [PR #30](https://github.com/nikitasadoviy-wq/nix-config/pull/30)), you may need to edit the script to limit CPU cores:
->
-> ```diff
-> # Change in install.sh:
-> - sudo nixos-rebuild switch --flake .#${HOST}
-> + sudo nixos-rebuild switch --cores 4 --flake .#${HOST}
-> ```
-
 #### 4. **Reboot**
 
 After the installation completes, reboot your system. If the installation was successful, you should be greeted by Hyprlock.
