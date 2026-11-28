@@ -15,7 +15,6 @@
       f = "superfile";
       py = "python";
       ipy = "ipython";
-      icat = "kitten icat";
       dsize = "du -hs";
       pdf = "tdf";
       open = "xdg-open";
@@ -25,8 +24,8 @@
       l = "eza --icons -a --group-directories-first -1 --no-user --long"; # EZA_ICON_SPACING=2
       tree = "eza --icons --tree --group-directories-first";
 
-      # Nixos
-      cdnix = "cd ~/nixos-config && codium ~/nixos-config";
+      # NixOS
+      cdnix = "cd ~/nix-config && codium ~/nix-config";
       ns = "nom-shell --run zsh";
       nsp = "nom-shell --run zsh -p";
       nd = "nom develop --command zsh";
@@ -37,7 +36,7 @@
       nfu = "nh-notify nh os switch --update";
       nsearch = "nh search";
 
-      # python
+      # Python
       piv = "python -m venv .venv";
       psv = "source .venv/bin/activate";
     };
