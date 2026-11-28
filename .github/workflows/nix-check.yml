@@ -1,0 +1,48 @@
+name: NixOS configuration checks
+
+on:
+  push:
+    branches:
+      - main
+      - "plombir/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Resolve and lock flake inputs
+        run: nix flake lock
+
+      - name: Parse every Nix expression
+        run: |
+          find . -type f -name '*.nix' -print0 |
+            while IFS= read -r -d '' file; do
+              nix-instantiate --parse "$file" >/dev/null
+            done
+
+      - name: Validate installer shell syntax
+        run: |
+          bash -n install.sh
+          find scripts -type f -name '*.sh' -print0 |
+            while IFS= read -r -d '' file; do
+              bash -n "$file"
+            done
+
+      - name: Evaluate every NixOS host
+        run: |
+          for host in desktop laptop p14s vm; do
+            echo "Evaluating $host..."
+            nix eval --impure --raw ".#nixosConfigurations.$host.config.system.build.toplevel.drvPath"
+          done
