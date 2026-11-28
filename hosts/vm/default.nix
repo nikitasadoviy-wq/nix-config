@@ -1,4 +1,3 @@
-
 { ... }:
 
 {
@@ -10,17 +9,12 @@
   # Virtual machine profile
   networking.hostName = "nixos-vm";
 
-  # UEFI boot
+  # UEFI boot. The shared core module configures Limine for every host.
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Bootloader selection
-  # Temporary default until the modular bootloader system is ready.
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10;
-  };
-
-  # SSH: public-key authentication only
+  # SSH: public-key authentication only.
+  # Add your public key to users.users.<username>.openssh.authorizedKeys.keys
+  # before relying on remote access.
   services.openssh = {
     enable = true;
 
