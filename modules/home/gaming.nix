@@ -35,7 +35,6 @@
     pcsx2             # PlayStation 2
     rpcs3             # PlayStation 3
     ppsspp            # PlayStation Portable
-    vita3k            # PlayStation Vita
 
     ## Sega
     flycast           # Dreamcast / Naomi
