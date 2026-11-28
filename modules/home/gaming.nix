@@ -24,7 +24,6 @@
         sameboy
         snes9x
         pcsx2
-        rpcs3
         ppsspp
         flycast
         blastem
