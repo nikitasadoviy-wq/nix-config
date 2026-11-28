@@ -7,8 +7,6 @@
   ];
 
   # Virtual machine profile
-  networking.hostName = "nixos-vm";
-
   # UEFI boot. The shared core module configures Limine for every host.
   boot.loader.efi.canTouchEfiVariables = true;
 
