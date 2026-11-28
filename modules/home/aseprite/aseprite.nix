@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+
+{ pkgs, disableAseprite ? false, ... }:
+
 {
-  home.packages = with pkgs; [ aseprite ];
+  home.packages =
+    if disableAseprite then
+      [ ]
+    else
+      [ pkgs.aseprite ];
 }
