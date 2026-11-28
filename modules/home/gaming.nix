@@ -32,7 +32,6 @@
     snes9x            # SNES
 
     ## PlayStation
-    duckstation       # PlayStation 1
     pcsx2             # PlayStation 2
     rpcs3             # PlayStation 3
     ppsspp            # PlayStation Portable
